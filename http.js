@@ -3,7 +3,7 @@ var router = require ('./router');
 var app = router(3412)
 
  var operadoras = [
-    { nome: "Vivo", código: "15", categoria: "Celular", preco: 1 },
+    { nome: "Vivo", código: "15", categoria: "Celular", preco: 1},
     { nome: "Claro", código: "16", categoria: "Celular", preco: 3},
     { nome: "Oi", código: "14", categoria: "Celular", preco: 2},
     { nome: "GVT", código: "25", categoria: "Fixo", preco: 0.5},
@@ -27,5 +27,5 @@ var app = router(3412)
 });
 
  app.post('/contatos', function (req, res) {
-     res.end();
+    res.end();
  });
