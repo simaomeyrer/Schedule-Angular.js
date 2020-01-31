@@ -31,23 +31,26 @@
     <script src="lib/angular/angular.js"></script>
     <script>
         angular.module("listaTelefonica", [])
-        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
+        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http) {
             $scope.app = "Lista Telefonica"
-            $scope.contatos = [
-                { nome: "Simão", telefone: "99952-8263", data: new Date()},
-                { nome: "Cali", telefone: "91932-8499", data: new Date()},
-                { nome: "Vini", telefone: "98832-1153",  data: new Date()}
-            ]
-            $scope.operadoras = [
-                { nome: "Vivo", código: "15", categoria: "Celular", preco: 1 },
-                { nome: "Claro", código: "16", categoria: "Celular", preco: 3},
-                { nome: "Oi", código: "14", categoria: "Celular", preco: 2},
-                { nome: "GVT", código: "25", categoria: "Fixo", preco: 0.5},
-                { nome: "Embratel", código: "21", categoria: "Fixo", preco: 0.7}
+            $scope.contatos = []
+            $scope.operadoras = []
+                      
+            var carregarContatos =  function () {
+                $http.get("http://localhost:3412/contatos").then(function(response) {
+                    $scope.contatos = response.data
+                })
+            }
 
+            var carregarOperadoras = function () {
+                $http.get("http://localhost:3412/operadoras").then(function(response) {
+                    $scope.operadoras = response.data
+                })
+            }
 
-            ]
             $scope.adicionarContato = function (contato) {
+                contato.data = response.data
+                console.log(contato)
                 $scope.contatos.push(angular.copy(contato))
                 delete $scope.contato
                 $scope.contatoForm.$setPristine()
@@ -66,6 +69,9 @@
                 $scope.criterioDeOrdenacao = campo 
                 $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao
             }
+
+            carregarContatos()
+            carregarOperadoras()
         })
     </script>
     <script src="lib/angular/angular-locale_pt-br.js"></script>

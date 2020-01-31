@@ -1,4 +1,4 @@
-var router = require('./router');
+var router = require ('./router');
 
 var app = router(3412)
 
@@ -22,14 +22,9 @@ var app = router(3412)
  });
 
  app.get('/contatos', function(req, res) {
-    res.write(JSON.stringify(operadoras));
+    res.write(JSON.stringify(contatos));
     res.end();
 });
- http.createServer (function (req, res) {
-     console.log(req.url);
-     res.write(JSON.stringify(operadoras));
-     res.end();
- }).listen(3412);
 
  app.post('/contatos', function (req, res) {
      res.end();
