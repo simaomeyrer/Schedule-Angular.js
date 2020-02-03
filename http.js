@@ -1,6 +1,6 @@
 var router = require ('./router');
 
-var app = router(3412)
+var app = router(3412);
 
  var operadoras = [
     { nome: "Vivo", código: "15", categoria: "Celular", preco: 1},
@@ -16,7 +16,7 @@ var app = router(3412)
     { nome: "Vini", telefone: "98832-1153",  data: new Date()}
  ];
 
- app.get('/operadoras', function(req, res) {
+ app.get('/operadoras', function (req, res) {
      res.write(JSON.stringify(operadoras));
      res.end();
  });
@@ -27,5 +27,6 @@ var app = router(3412)
 });
 
  app.post('/contatos', function (req, res) {
-    res.end();
+   console.log(req.body);
+   res.end();
  });
