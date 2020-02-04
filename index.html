@@ -2,85 +2,13 @@
 
 <head>
     <title> Lista Telefonica </title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        .jumbotron {
-            width: 600px;
-            text-align: center;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .table {
-            margin-top: 20px;
-        }
-
-        .form-control {
-            margin-bottom: 5px;
-        }
-        .selecionado {
-            background-color:rgb(227, 252, 177);
-        }
-        hr {
-            border-color: #999;
-        }
-
-    </style>
+    <link rel="stylesheet" href="CSS/styles.css">
     <script src="lib/angular/angular.js"></script>
-    <script>
-        angular.module("listaTelefonica", [])
-        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http) {
-            $scope.app = "Lista Telefonica"
-            $scope.contatos = []
-            $scope.operadoras = []
-                      
-            var carregarContatos =  function () {
-                $http.get("http://localhost:3412/contatos").then(function(response) {
-                    $scope.contatos = response.data
-                }).catch(function (response) {
-                    $scope.message = "Aconteceu algo de errado. " + response
-                })
-            }
-
-            var carregarOperadoras = function () {
-                $http.get("http://localhost:3412/operadoras").then(function(response) {
-                    $scope.operadoras = response.data
-                })
-            }
-
-            $scope.adicionarContato = function (contato) {
-                $http({
-                    method: 'POST',
-                    url: 'http://localhost:3412/contatos',
-                    data: contato
-                }).then(function (data) {
-                    console.log(data)
-                    delete $scope.contato
-                    $scope.contatoForm.$setPristine()
-                }).catch(error => {console.log("Erro:", error)})
-            }    
-
-            $scope.apagarContato = function (contatos) {
-                $scope.contatos = contatos.filter(function (contato) {
-                   if (!contato.selecionado) return contato 
-                })
-            }
-            $scope.isContatoSelecionado = function (contatos) {
-                return contatos.some(function (contato) {
-                    return contato.selecionado
-                })
-            }
-            $scope.ordenarPor = function (campo) {
-                $scope.criterioDeOrdenacao = campo 
-                $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao
-            }
-
-            carregarContatos()
-            carregarOperadoras()
-        })
-    </script>
+    <script src="/js/app.js"></script>
+    <script src="/js/Controllers/ListaTelefonicaCtrl.js"></script>
     <script src="lib/angular/angular-locale_pt-br.js"></script>
 
 </head>
@@ -112,7 +40,7 @@
 
         <form name="contatoForm">
             <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="1"/>
-            <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+            <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true"/>
             <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome + ' ' + (operadora.preco | currency) for operadora in operadoras| orderBy:'nome'">
                 <option value="">Selecione uma operadora</option>
         </select>
