@@ -16,7 +16,7 @@ var app = router(3412);
     { nome: "Vini", telefone: "98832-1153",  data: new Date()}
  ];
 
- app.get('/operadoras', function (req, res) {
+ app.get('/operadoras', function(req, res) {
      res.write(JSON.stringify(operadoras));
      res.end();
  });
@@ -26,7 +26,7 @@ var app = router(3412);
     res.end();
 });
 
- app.post('/contatos', function (req, res) {
-   console.log(req.body);
+app.post('/contatos', function(req, res) {
+   contatos.push(req.body);
    res.end();
  });
