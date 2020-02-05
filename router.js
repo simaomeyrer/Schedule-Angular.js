@@ -23,6 +23,7 @@ var createRouter = function (port) {
             return res.end();
         }
         routes[req.method][req.url](req, res); 
+
     }).listen(port);
 
     return api;
