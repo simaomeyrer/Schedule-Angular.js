@@ -27,6 +27,5 @@ var app = router(3412);
 });
 
 app.post('/contatos', function(req, res) {
-   contatos.push(req.body);
    res.end();
  });
