@@ -1,5 +1,4 @@
 angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, contatosAPI, operadorasAPI, serialGenerator) {
-console.log(serialGenerator.generate())
 $scope.app = "Lista Telefonica"
 $scope.contatos = []
 $scope.operadoras = []
@@ -8,7 +7,7 @@ var carregarContatos =  function () {
     contatosAPI.getContatos().then(function(response) {
         $scope.contatos = response.data
     }).catch(function (response) {
-        $scope.message = "Algo de errado ocorreu. " + response
+        $scope.error = "Não foi possível carregar os dados."
     })
 }
 

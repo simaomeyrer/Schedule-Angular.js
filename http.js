@@ -11,9 +11,9 @@ var app = router(3412);
  ];
 
  var contatos = [
-    { nome: "Simão", telefone: "99952-8263", data: new Date()},
-    { nome: "Cali", telefone: "91932-8499", data: new Date()},
-    { nome: "Vini", telefone: "98832-1153",  data: new Date()}
+    { nome: "simão meyrer", telefone: "99952-8263", data: new Date()},
+    { nome: "cAli junior", telefone: "91932-8499", data: new Date()},
+    { nome: "VINI cius", telefone: "98832-1153",  data: new Date()}
  ];
 
  app.get('/operadoras', function(req, res) {
